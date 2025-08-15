@@ -1,11 +1,10 @@
-#include <wiringPi.h>
 #include <stdio.h>
-#include <stdbool.h>
 
 int getKillStatus() {
-	wiringPiSetup();
-	pinMode(8, OUTPUT);
-	bool value = !digitalRead(8);
-	// printf("The value is %d\n", value);
-	return value;
+	FILE* bashScriptFile;
+	int status;
+	bashScriptFile = popen("./dashboard_status.sh", "r");
+	status = (fgetc(bashScriptFile) - 48);
+	// printf("The value is %d\n", status);
+	return status;
 }
