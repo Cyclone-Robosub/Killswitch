@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-int getKillStatus() {
+bool getKillStatus() {
 	FILE* bashScriptFile;
-	int status;
+	bool status;
 	bashScriptFile = popen("./dashboard_status.sh", "r");
 	status = (fgetc(bashScriptFile) - 48);
 	// printf("The value is %d\n", status);
